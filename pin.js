@@ -1,4 +1,12 @@
-define(['zepto'], function($) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['$'], factory);
+  } else {
+    // Browser globals
+    root.Pin = factory(root.$);
+  }
+}(this, function ($) {
   'use strict';
 
   var CONFS = [];
@@ -32,17 +40,16 @@ define(['zepto'], function($) {
    */
   function createConfItem(target, offset) {
     var $target = $(target);
-    offset = Number.isNaN(Number(offset))?0:offset;
-    var originTop = $target.offset().top - offset;
     var topCache = $target.css('top');
-    var width = $target.css('width');
+    offset = Number.isNaN(Number(offset))?0:offset;
     return {
       $target: $target,
       selector: target,
       offset: offset,
-      width: width,
-      topCache: topCache,
-      originTop: originTop
+      left: 0,
+      width: $target.css('width'),
+      topCache: topCache == 'auto' ? '' : topCache,
+      originTop: $target.offset().top - offset
     };
   }
 
@@ -71,9 +78,7 @@ define(['zepto'], function($) {
     } else {
       configs.push(createConfItem(target, settings.offset));
     }
-
     CONFS = configs;
-    console.log(CONFS);
     bindScrollEvent();
   }
 
@@ -90,11 +95,11 @@ define(['zepto'], function($) {
   }
 
   function fixedTop(config) {
-    config.$target.addClass('pin-fixed-top').css({'top': config.offset+'px', 'width': config.width});
+    config.$target.addClass('pin-fixed').css({'top': config.offset+'px', 'width': config.width, 'position': 'fixed'});
   }
 
   function removeFixedTop(config) {
-    config.$target.removeClass('pin-fixed-top').css('top', config.topCache);
+    config.$target.removeClass('pin-fixed').css({position: '', top: '', width: ''});
   }
 
   /**
@@ -163,10 +168,10 @@ define(['zepto'], function($) {
       configs.push(createConfItem(targets.target, offset));
     }
     configs.forEach(function(item) {
-      mixin(item);
+      mix(item);
     });
 
-    function mixin(newConf) {
+    function mix(newConf) {
       for(var i=0, len=CONFS.length; i<len; i++) {
         if(CONFS[i].selector === newConf.selector) {
           CONFS[i] = newConf;
@@ -178,8 +183,8 @@ define(['zepto'], function($) {
     console.log(CONFS);
   }
 
-  return window.Pin = {
+  return {
     bind: init,
     rebind: rebind
   };
-});
+}));

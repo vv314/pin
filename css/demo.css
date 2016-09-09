@@ -1,0 +1,49 @@
+.wrap {padding: 20px; height: 5000px;}
+.ele {
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: bold;
+  box-sizing: border-box;
+  background-color: #ccc;
+}
+
+.ele-1 {background-color: pink}
+.ele-2 {background-color: blue}
+.ele-3 {height: 80px; background-color: orange}
+.ele-4 {background-color: purple}
+.ele-5 {position: absolute; top: 1340px; height: 80px; background-color: teal}
+
+.box {position: relative;}
+
+.tip {
+    width: 200px;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 330px;
+    color: #000;
+    background-color: #eee;
+    transition: background .5s;
+}
+
+.tip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -6px;
+    display: block;
+    border: 12px solid transparent;
+    border-top-color: #eee;
+    transition: border .5s;
+}
+
+.pin-fixed .tip {
+    background-color: #d4e6a2;
+}
+.pin-fixed .tip::before {
+    border-top-color: #d4e6a2;
+}
+

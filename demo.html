@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Pin</title>
+  <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="box">
+      <img id="img" src="http://placehold.it/300x280" alt="fish">
+      <div class="tip">图片内容，由于网络原因，加载速度不确定</div>
+    </div>
+
+    <div class="ele ele-1">1</div>
+
+    <div class="box ele ele-2">
+      <span>2</span>
+      <div class="tip">
+        <p>pin内容，页面滚动到此处将会固定此元素</p>
+        <p>设置contextEle将会等待顶部图片元素加载完毕</p>
+      </div>
+    </div>
+
+    <div class="box ele ele-3">
+      <span>3</span>
+      <div class="tip">跟随元素，设置offset属性</div>
+    </div>
+
+    <div class="ele ele-4">4</div>
+
+    <div class="ele ele-5">
+      <span>5</span>
+      <div class="tip">绝对定位元素</div>
+    </div>
+
+  </div>
+  <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+  <script src="pin.js"></script>
+  <script>
+    Pin.bind({
+      target: [
+        '.ele-2', 
+        {
+          target: '.ele-3', 
+          offset: 310
+        }, 
+        {
+          target: '.ele-5', 
+          offset: 400
+        }
+      ],
+      contextEle: document.getElementById('img')
+    });
+  </script>
+</body>
+</html>
