@@ -1,6 +1,16 @@
 # pin
 将元素定于页面某个位置
 
+
+## Options
+
+| field|  type |    default|   desc|
+| :-------- |:--------:| --------:| :------: |
+| target    |  Object |  null  |  目标元素  |
+| offset    |  Number|  0   | 偏移量|
+| contextEle    | DOM |  document|  依赖元素|
+| hackModel    |  Boolean |  false|  Hack模式|
+
 ## Usage
 依赖于zepto或jQuery，支持AMD规范，页面引入pin.js及pin.css样式
 ```
@@ -8,7 +18,7 @@
 <script src="pin.js"></script>
 ```
 ### 初始化
-待页面加载就绪后执行绑定方法初始化pin
+Pin只有两个API，页面加载就绪后执行bind方法初始化Pin
 ```javascript
 Pin.bind({
   target: '#ele'
@@ -67,3 +77,4 @@ Pin.bind({
   hackModel: true
 });
 ```
+
