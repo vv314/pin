@@ -1,4 +1,9 @@
 # pin
+<<<<<<< HEAD
+=======
+[Demo](https://vv314.github.io/pin/demo.html)
+
+>>>>>>> master
 将元素定于页面某个位置，已经存在成熟的同名插件[jquery.pin](https://github.com/webpop/jquery.pin)，
 此项目的目的是为了方便多元素操作，以及图片加载过程中获取目标元素初始位置异常的问题。
 提供`rebind`方法解决个别元素DOM更新，绑定失效问题。
