@@ -178,7 +178,7 @@ define(['zepto'], function($) {
     console.log(CONFS);
   }
 
-  return {
+  return window.Pin = {
     bind: init,
     rebind: rebind
   };
