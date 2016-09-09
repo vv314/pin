@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/pin.css"/>
 <script src="pin.js"></script>
 ```
-
+### 初始化
 待页面加载就绪后执行绑定方法初始化pin
 ```javascript
 Pin.bind({
@@ -23,7 +23,7 @@ Pin.bind({
 });
 ```
 
-
+### 多个target
 target参数支持数组形式，以传入多个元素
 ```javascript
 Pin.bind({
@@ -38,10 +38,32 @@ Pin.bind({
 });
 ```
 
+### 重新绑定
 如果target元素在交互过程中被重新绘制（常发生于模板局部刷新）。可使用rebind方法重新绑定指定元素
 ```javascript
 Pin.rebind({
+  target: '#ele_1',
+  offset: 40
+});
+```
+
+### 依赖元素
+可以通过contextEle参数指定依赖的DOM元素，当依赖元素加载就绪后才会执行初始化，常见于target上方存在图片的情况
+```javascript
+Pin.bind({
   target: '#ele',
+  offset: 50,
+  contextEle: $('.swiper-slide img')[0]
+});
+```
+
+### Hack模式*
+pin监听浏览器的onscroll事件事先元素滚动固定。但在一些移动端浏览器上（如微信），浏览器开发者为了使页面性能更为流畅，在页面滚动过程中，不会触发onscroll事件，只有当页面结束滚动时才会触发，可以使用hack参数强制在页面滚动过程中实时响应变化。
+**注意：开启此模式会导致页面性能下降，无特殊需求，不建议开启**
+```javascript
+Pin.bind({
+  target: '#ele',
+  offset: 40,
   hackModel: true
 });
 ```
