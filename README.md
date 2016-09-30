@@ -1,6 +1,5 @@
 # pin
-<<<<<<< HEAD
-=======
+
 [Demo](https://vv314.github.io/pin/demo.html)
 
 >>>>>>> master
